@@ -36,8 +36,21 @@ express()
         res.render('pages/add');
     })
 
-    .post('/added', (req, res) => {
-        res.render('pages/success');
+    .post('/added', async (req, res) => {
+        var name = req.body.name;
+        var size = req.body.size;
+        var height = req.body.height;
+        var type = req.body.type;
+
+        try {
+            const client = await pool.connect();
+            await client.query('INSERT INTO person VALUES ($1, $2, $3, $4)', [name, size, height, type]);
+            res.render('pages/success');
+            client.release();
+        } catch (err) {
+            console.error(err);
+            res.send("Error " + err);
+        }
     })
     
     .listen(PORT, () => console.log(`Listening on ${ PORT }`))
