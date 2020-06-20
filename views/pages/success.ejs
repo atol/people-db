@@ -8,13 +8,10 @@
     <%- include ("../partials/nav") %>
     <div class="container">
         <div class ="display">
-            <h1>Database Results</h1>
-
-            <ul>
-                <% results.forEach(function(r) { %>
-                    <li><%= r.id %> - <%= r.name %></li>
-                <% }); %>
-            </ul>
+            <h1>Success!</h1>
+            <form action="/" class="inline">
+                <button class="home">Return to home</button>
+            </form>
         </div>
     </div>
 </body>

@@ -32,12 +32,12 @@ express()
         }
     })
 
-    .post('/add', (req, res) => {
-        var name = req.body.name;
-        var size = req.body.size;
-        var height = req.body.height;
-        var type = req.body.type;
-        res.send(`username: ${name}, size: ${size}, height: ${height}, type: ${type}`);
+    .get('/add', (req, res) => {
+        res.render('pages/add');
+    })
+
+    .post('/added', (req, res) => {
+        res.render('pages/success');
     })
     
     .listen(PORT, () => console.log(`Listening on ${ PORT }`))

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <%- include ("../partials/header") %>
+</head>
+
+<body>
+    <%- include ("../partials/nav") %>
+    <div class="container">
+        <div class ="display">
+            <h1>Add New Person</h1>
+            <form class="" action="/added" method="post">
+                <label for="name">Name</label><br>
+                <input type="text" name="name" value=""><br>
+
+                <label for="size">Size (kg)</label><br>
+                <input type="text" name="size" value=""><br>
+
+                <label for="height">Height (cm)</label><br>
+                <input type="text" name="height" value=""><br>
+                
+                <label for="type">Type</label><br>
+                <select name="type">
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select><br>
+
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+    </div>
+</body>
+</html>
