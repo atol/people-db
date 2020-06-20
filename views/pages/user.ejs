@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <%- include ("../partials/header") %>
+</head>
+
+<body>
+    <%- include ("../partials/nav") %>
+    <div class="container">
+        <div class ="display">
+            <h1>Profile</h1>
+
+            <ul>
+                <% results.forEach(function(r) { %>
+                    <li><p>Name: <%= r.name %></p></li>
+                    <li><p>Size: <%= r.size %></p></li>
+                    <li><p>Height: <%= r.height %></p></li>
+                    <li><p>Type: <%= r.type %></p></li>
+                <% }); %>
+            </ul>
+
+            <button id="edit" onclick="location.href='/edit'">Edit</button>
+            <button id="delete" onclick="location.href='/delete'">Delete</button>
+        </div>
+    </div>
+</body>
+</html>

@@ -23,7 +23,7 @@ express()
         try {
             const client = await pool.connect();
             const result = await client.query('SELECT * FROM person');
-            const results = { 'results': (result) ? result.rows : null};
+            const results = {'results': (result) ? result.rows : null};
             res.render('pages/index', results);
             client.release();
         } catch (err) {
@@ -34,6 +34,20 @@ express()
 
     .get('/add', (req, res) => {
         res.render('pages/add');
+    })
+
+    .get('/user/:id', async (req, res) => {
+        var uid = req.params.id;
+        try {
+            const client = await pool.connect();
+            const result = await client.query('SELECT * FROM person WHERE name=$1', [uid]);
+            const results = {'results': (result) ? result.rows : null};
+            res.render('pages/user', results);
+            client.release();
+        } catch (err) {
+            console.error(err);
+            res.render('pages/error', err);
+        }
     })
 
     .post('/added', async (req, res) => {
