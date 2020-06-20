@@ -7,9 +7,19 @@
 
 .display {
     display: inline-block;
-    width: 740px;
+    width: 70%;
     text-align: justify;
     font-size: 100%;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+ul li {
+    margin-bottom: 20px;
 }
 
 input[type="text"], select {
