@@ -24,11 +24,11 @@ express()
             const client = await pool.connect();
             const result = await client.query('SELECT * FROM person');
             const results = { 'results': (result) ? result.rows : null};
-            res.render('pages/index', results );
+            res.render('pages/index', results);
             client.release();
         } catch (err) {
             console.error(err);
-            res.send("Error " + err);
+            res.render('pages/error', err);
         }
     })
 
@@ -49,7 +49,7 @@ express()
             client.release();
         } catch (err) {
             console.error(err);
-            res.send("Error " + err);
+            res.render('pages/error', {error: err});
         }
     })
     

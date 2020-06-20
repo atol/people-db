@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <%- include ("../partials/header") %>
+</head>
+
+<body>
+    <%- include ("../partials/nav") %>
+    <div class="container">
+        <div class ="display">
+            <h1>Error</h1>
+
+            <p><%= error %></p>
+
+            <form action="/" class="inline">
+                <button id="return">Go Back</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
