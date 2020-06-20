@@ -50,6 +50,20 @@ express()
         }
     })
 
+    .get('/user/:id/delete', async (req, res) => {
+        var uid = req.params.id;
+        try {
+            const client = await pool.connect();
+            const result = await client.query('DELETE FROM person WHERE name=$1', [uid]);
+            const results = {'results': (result) ? result.rows : null};
+            res.render('pages/success', {status: "User `" + uid + "` deleted."});
+            client.release();
+        } catch (err) {
+            console.error(err);
+            res.render('pages/error', err);
+        }
+    })
+
     .post('/added', async (req, res) => {
         var name = req.body.name.toLowerCase();
         var size = req.body.size;
@@ -59,7 +73,7 @@ express()
         try {
             const client = await pool.connect();
             await client.query('INSERT INTO person VALUES ($1, $2, $3, $4)', [name, size, height, type]);
-            res.render('pages/success');
+            res.render('pages/success', {status: "User `" + name + "` added."});
             client.release();
         } catch (err) {
             console.error(err);
