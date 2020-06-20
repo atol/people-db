@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <%- include ("../partials/header") %>
+</head>
+
+<body>
+    <%- include ("../partials/nav") %>
+    <div class="container">
+        <div class ="display">
+            <h1>Edit User</h1>
+            <% results.forEach(function(r) { %>
+                <form action="/edited" method="post">
+                    <label for="name">Name</label><br>
+                    <input type="text" name="name" value="<%= r.name.trim() %>"><br>
+
+                    <label for="size">Size</label><br>
+                    <input type="text" name="size" value="<%= r.size %>"><br>
+
+                    <label for="height">Height</label><br>
+                    <input type="text" name="height" value="<%= r.height %>"><br>
+                    
+                    <label for="type">Type</label><br>
+                    <select name="type">
+                        <% if(r.type.trim() == 'male') { %>
+                            <option value="male" selected>Male</option>
+                            <option value="female">Female</option>
+                        <% } else { %>
+                            <option value="male">Male</option>
+                            <option value="female" selected>Female</option>
+                        <% } %>
+                    </select><br>
+
+                    <input type="submit" value="Submit">
+                    <button id="return" onclick="history.back()">Cancel</button>
+                </form>
+            <% }); %>
+        </div>
+    </div>
+</body>
+</html>

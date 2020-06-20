@@ -64,6 +64,20 @@ express()
         }
     })
 
+    .get('/user/:id/edit', async (req, res) => {
+        var uid = req.params.id;
+        try {
+            const client = await pool.connect();
+            const result = await client.query('SELECT * FROM person WHERE name=$1', [uid]);
+            const results = {'results': (result) ? result.rows : null};
+            res.render('pages/edit', results);
+            client.release();
+        } catch (err) {
+            console.error(err);
+            res.render('pages/error', err);
+        }
+    })
+
     .post('/added', async (req, res) => {
         var name = req.body.name.toLowerCase();
         var size = req.body.size;
@@ -81,4 +95,21 @@ express()
         }
     })
     
+    .post('/edited', async (req, res) => {
+        var name = req.body.name.toLowerCase();
+        var size = req.body.size;
+        var height = req.body.height;
+        var type = req.body.type;
+
+        try {
+            const client = await pool.connect();
+            await client.query('UPDATE person SET name=$1, size=$2, height=$3, type=$4 WHERE name=$1', [name, size, height, type]);
+            res.redirect('/user/' + name);
+            client.release();
+        } catch (err) {
+            console.error(err);
+            res.render('pages/error', {error: err});
+        }
+    })
+
     .listen(PORT, () => console.log(`Listening on ${ PORT }`))
