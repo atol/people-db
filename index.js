@@ -37,7 +37,7 @@ express()
     })
 
     .post('/added', async (req, res) => {
-        var name = req.body.name;
+        var name = req.body.name.toLowerCase();
         var size = req.body.size;
         var height = req.body.height;
         var type = req.body.type;
