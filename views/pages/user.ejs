@@ -6,16 +6,20 @@
 
 <body>
     <%- include ("../partials/nav") %>
+    <% function capitalize(string) {
+        // https://stackoverflow.com/questions/1026069/how-do-i-make-the-first-letter-of-a-string-uppercase-in-javascript
+        return string[0].toUpperCase() + string.substring(1)
+    } %>
     <div class="container">
         <div class ="display">
             <h1>Profile</h1>
 
             <ul>
                 <% results.forEach(function(r) { %>
-                    <li><p>Name: <%= r.name.trim() %></p></li>
+                    <li><p>Name: <%= capitalize(r.name.trim()) %></p></li>
                     <li><p>Size: <%= r.size %></p></li>
                     <li><p>Height: <%= r.height %></p></li>
-                    <li><p>Type: <%= r.type %></p></li>
+                    <li><p>Type: <%= capitalize(r.type.trim()) %></p></li>
                     <button id="edit" onclick="location.href='/user/<%= r.name.trim() %>/edit'">Edit</button>
                     <button id="delete" onclick="location.href='/user/<%= r.name.trim() %>/delete'">Delete</button>
                 <% }); %>
