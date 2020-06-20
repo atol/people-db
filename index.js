@@ -36,13 +36,13 @@ express()
         res.render('pages/add');
     })
 
-    .get('/user/:id', async (req, res) => {
+    .get('/person/:id', async (req, res) => {
         var uid = req.params.id;
         try {
             const client = await pool.connect();
             const result = await client.query('SELECT * FROM person WHERE name=$1', [uid]);
             const results = {'results': (result) ? result.rows : null};
-            res.render('pages/user', results);
+            res.render('pages/person', results);
             client.release();
         } catch (err) {
             console.error(err);
@@ -50,13 +50,13 @@ express()
         }
     })
 
-    .get('/user/:id/delete', async (req, res) => {
+    .get('/person/:id/delete', async (req, res) => {
         var uid = req.params.id;
         try {
             const client = await pool.connect();
             const result = await client.query('DELETE FROM person WHERE name=$1', [uid]);
             const results = {'results': (result) ? result.rows : null};
-            res.render('pages/success', {status: "User `" + uid + "` deleted."});
+            res.render('pages/success', {status: "Person `" + uid + "` deleted."});
             client.release();
         } catch (err) {
             console.error(err);
@@ -64,7 +64,7 @@ express()
         }
     })
 
-    .get('/user/:id/edit', async (req, res) => {
+    .get('/person/:id/edit', async (req, res) => {
         var uid = req.params.id;
         try {
             const client = await pool.connect();
@@ -87,7 +87,7 @@ express()
         try {
             const client = await pool.connect();
             await client.query('INSERT INTO person VALUES ($1, $2, $3, $4)', [name, size, height, type]);
-            res.render('pages/success', {status: "User `" + name + "` added."});
+            res.render('pages/success', {status: "Person `" + name + "` added."});
             client.release();
         } catch (err) {
             console.error(err);
@@ -104,7 +104,7 @@ express()
         try {
             const client = await pool.connect();
             await client.query('UPDATE person SET name=$1, size=$2, height=$3, type=$4 WHERE name=$1', [name, size, height, type]);
-            res.redirect('/user/' + name);
+            res.redirect('/person/' + name);
             client.release();
         } catch (err) {
             console.error(err);
