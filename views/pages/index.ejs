@@ -5,17 +5,36 @@
 </head>
 
 <body>
+    <div class="container">
+        <div class ="display">
+            <h1>Database Results</h1>
 
-<div class="container">
-<h1>Database Results</h1>
+            <ul>
+                <% results.forEach(function(r) { %>
+                    <li><%= r.id %> - <%= r.name %></li>
+                <% }); %>
+            </ul>
 
-<ul>
-    <% results.forEach(function(r) { %>
-        <li><%= r.id %> - <%= r.name %></li>
-    <% }); %>
-</ul>
+            <h1>Add New Person</h1>
+            <form class="" action="/add" method="post">
+                <label for="name">Name</label><br>
+                <input type="text" name="name" value=""><br>
 
-</div>
+                <label for="size">Size (kg)</label><br>
+                <input type="text" name="size" value=""><br>
 
+                <label for="height">Height (cm)</label><br>
+                <input type="text" name="height" value=""><br>
+                
+                <label for="type">Type</label><br>
+                <select name="type">
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select><br>
+
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+    </div>
 </body>
 </html>

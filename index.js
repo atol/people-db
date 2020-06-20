@@ -12,6 +12,8 @@ const pool = new Pool({
 });
 
 express()
+    .use(express.json())
+    .use(express.urlencoded({extended:false}))
     .use(express.static(path.join(__dirname, 'public')))
     
     .set('views', path.join(__dirname, 'views'))
@@ -28,6 +30,14 @@ express()
             console.error(err);
             res.send("Error " + err);
         }
+    })
+
+    .post('/add', (req, res) => {
+        var name = req.body.name;
+        var size = req.body.size;
+        var height = req.body.height;
+        var type = req.body.type;
+        res.send(`username: ${name}, size: ${size}, height: ${height}, type: ${type}`);
     })
     
     .listen(PORT, () => console.log(`Listening on ${ PORT }`))
