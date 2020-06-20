@@ -12,7 +12,7 @@
 
             <ul>
                 <% results.forEach(function(r) { %>
-                    <li><a href="/user/<%= r.name %>"><%= r.name %></a></li>
+                    <li><a href="/user/<%= r.name.trim() %>"><%= r.name.trim() %></a></li>
                 <% }); %>
             </ul>
         </div>

@@ -31,6 +31,7 @@ input[type="submit"], button {
     font-weight: bold;
     cursor: pointer;
     margin-top: 10px;
+    margin-right: 10px;
 }
 
 input[type="submit"]:hover, button:hover {

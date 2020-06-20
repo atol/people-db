@@ -12,15 +12,14 @@
 
             <ul>
                 <% results.forEach(function(r) { %>
-                    <li><p>Name: <%= r.name %></p></li>
+                    <li><p>Name: <%= r.name.trim() %></p></li>
                     <li><p>Size: <%= r.size %></p></li>
                     <li><p>Height: <%= r.height %></p></li>
                     <li><p>Type: <%= r.type %></p></li>
+                    <button id="edit" onclick="location.href='/user/<%= r.name.trim() %>/edit'">Edit</button>
+                    <button id="delete" onclick="location.href='/user/<%= r.name.trim() %>/delete'">Delete</button>
                 <% }); %>
             </ul>
-
-            <button id="edit" onclick="location.href='/edit'">Edit</button>
-            <button id="delete" onclick="location.href='/delete'">Delete</button>
         </div>
     </div>
 </body>
