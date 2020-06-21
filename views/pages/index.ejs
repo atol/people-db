@@ -12,7 +12,7 @@
     } %>
     <div class="container">
         <div class ="display">
-            <h1>Database Results</h1>
+            <h1>People</h1>
             <ul>
                 <% results.forEach(function(r) { %>
                     <% if (r.type.trim() == 'male') { %>
@@ -27,7 +27,7 @@
                         </svg>
                     <% } %>
                     <li>
-                        <a href="/person/<%= r.name.trim() %>"><%= capitalize(r.name.trim()) %></a>
+                        <a href="/person/<%= r.id %>"><%= capitalize(r.name.trim()) %></a>
                     </li>
                 <% }); %>
             </ul>

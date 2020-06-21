@@ -11,6 +11,8 @@ const pool = new Pool({
     }
 });
 
+const { uuid } = require('uuidv4');
+
 express()
     .use(express.json())
     .use(express.urlencoded({extended:false}))
@@ -37,10 +39,10 @@ express()
     })
 
     .get('/person/:id', async (req, res) => {
-        var uid = req.params.id;
+        var id = req.params.id;
         try {
             const client = await pool.connect();
-            const result = await client.query('SELECT * FROM person WHERE name=$1', [uid]);
+            const result = await client.query('SELECT * FROM person WHERE id=$1', [id]);
             const results = {'results': (result) ? result.rows : null};
             res.render('pages/person', results);
             client.release();
@@ -51,12 +53,13 @@ express()
     })
 
     .get('/person/:id/delete', async (req, res) => {
-        var uid = req.params.id;
+        var id = req.params.id;
         try {
             const client = await pool.connect();
-            const result = await client.query('DELETE FROM person WHERE name=$1', [uid]);
+            const result = await client.query('SELECT * FROM person WHERE id=$1', [id]);
             const results = {'results': (result) ? result.rows : null};
-            res.render('pages/success', {status: "Person `" + uid + "` deleted."});
+            await client.query('DELETE FROM person WHERE id=$1', [id]);
+            res.render('pages/success', results);
             client.release();
         } catch (err) {
             console.error(err);
@@ -65,10 +68,10 @@ express()
     })
 
     .get('/person/:id/edit', async (req, res) => {
-        var uid = req.params.id;
+        var id = req.params.id;
         try {
             const client = await pool.connect();
-            const result = await client.query('SELECT * FROM person WHERE name=$1', [uid]);
+            const result = await client.query('SELECT * FROM person WHERE id=$1', [id]);
             const results = {'results': (result) ? result.rows : null};
             res.render('pages/edit', results);
             client.release();
@@ -79,6 +82,7 @@ express()
     })
 
     .post('/added', async (req, res) => {
+        var id = uuid();
         var name = req.body.name.toLowerCase();
         var size = req.body.size;
         var height = req.body.height;
@@ -86,8 +90,8 @@ express()
 
         try {
             const client = await pool.connect();
-            await client.query('INSERT INTO person VALUES ($1, $2, $3, $4)', [name, size, height, type]);
-            res.render('pages/success', {status: "Person `" + name + "` added."});
+            await client.query('INSERT INTO person VALUES ($1, $2, $3, $4, $5)', [id, name, size, height, type]);
+            res.redirect('person/' + id);
             client.release();
         } catch (err) {
             console.error(err);
@@ -95,7 +99,8 @@ express()
         }
     })
     
-    .post('/edited', async (req, res) => {
+    .post('/edited/:id', async (req, res) => {
+        var id = req.params.id;
         var name = req.body.name.toLowerCase();
         var size = req.body.size;
         var height = req.body.height;
@@ -103,8 +108,8 @@ express()
 
         try {
             const client = await pool.connect();
-            await client.query('UPDATE person SET name=$1, size=$2, height=$3, type=$4 WHERE name=$1', [name, size, height, type]);
-            res.redirect('/person/' + name);
+            await client.query('UPDATE person SET name=$2, size=$3, height=$4, type=$5 WHERE id=$1', [id, name, size, height, type]);
+            res.redirect('/person/' + id);
             client.release();
         } catch (err) {
             console.error(err);

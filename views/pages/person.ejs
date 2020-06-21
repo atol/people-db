@@ -12,16 +12,15 @@
     } %>
     <div class="container">
         <div class ="display">
-            <h1>Profile</h1>
-
+            <h1>Person</h1>
             <ul>
                 <% results.forEach(function(r) { %>
-                    <li><p>Name: <%= capitalize(r.name.trim()) %></p></li>
-                    <li><p>Size: <%= r.size %></p></li>
-                    <li><p>Height: <%= r.height %></p></li>
-                    <li><p>Type: <%= capitalize(r.type.trim()) %></p></li>
-                    <button id="edit" onclick="location.href='/person/<%= r.name.trim() %>/edit'">Edit</button>
-                    <button id="delete" onclick="location.href='/person/<%= r.name.trim() %>/delete'">Delete</button>
+                    <li><p><strong>Name:</strong> <%= capitalize(r.name.trim()) %></p></li>
+                    <li><p><strong>Size:</strong> <%= r.size %></p></li>
+                    <li><p><strong>Height:</strong> <%= r.height %></p></li>
+                    <li><p><strong>Type:</strong> <%= capitalize(r.type.trim()) %></p></li>
+                    <button id="edit" onclick="location.href='/person/<%= r.id %>/edit'">Edit</button>
+                    <button id="delete" onclick="location.href='/person/<%= r.id %>/delete'">Delete</button>
                 <% }); %>
             </ul>
         </div>

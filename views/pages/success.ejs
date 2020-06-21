@@ -6,14 +6,18 @@
 
 <body>
     <%- include ("../partials/nav") %>
+    <% function capitalize(string) {
+        // https://stackoverflow.com/questions/1026069/how-do-i-make-the-first-letter-of-a-string-uppercase-in-javascript
+        return string[0].toUpperCase() + string.substring(1)
+    } %>
     <div class="container">
         <div class ="display">
             <h1>Success!</h1>
-            
-            <p><%= status %></p>
-
+            <% results.forEach(function(r) { %>
+                <p>Person '<%= capitalize(r.name.trim()) %>' deleted'.</p>
+            <% }); %>
             <form action="/" class="">
-                <input type="submit" value="Return to home"/>
+                <input type="submit" value="Return home"/>
             </form>
         </div>
     </div>

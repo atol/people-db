@@ -14,7 +14,7 @@
         <div class ="display">
             <h1>Edit Person</h1>
             <% results.forEach(function(r) { %>
-                <form action="/edited" method="post">
+                <form action="/edited/<%= r.id %>" method="post">
                     <label for="name">Name</label><br>
                     <input type="text" name="name" value="<%= capitalize(r.name.trim()) %>"><br>
 
