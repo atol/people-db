@@ -1,11 +1,44 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
-.container {
+body {
+    margin: 0;
     font-family: 'Roboto', sans-serif;
     text-align: center;
 }
 
-.display {
+.navbar {
+    margin-bottom: 30px;
+}
+
+.navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding-left: 30px;
+    overflow: hidden;
+    background-color: #440082;
+}
+  
+.navbar li {
+    float: left;
+    margin: 0;
+    font-size: 85%;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+  
+.navbar li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 18px;
+    text-decoration: none;
+}
+  
+.navbar li a:hover {
+    background-color: #5900ab;
+}
+
+.container {
     display: inline-block;
     width: 70%;
     text-align: justify;
