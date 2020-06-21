@@ -45,6 +45,12 @@ body {
     font-size: 100%;
 }
 
+span {
+    display: inline-block;
+    width: 80px;
+    font-weight: bold;
+}
+
 ul {
     list-style-type: none;
     margin: 0;

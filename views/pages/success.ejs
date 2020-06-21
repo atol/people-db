@@ -11,15 +11,13 @@
         return string[0].toUpperCase() + string.substring(1)
     } %>
     <div class="container">
-        <div class ="display">
-            <h1>Success!</h1>
-            <% results.forEach(function(r) { %>
-                <p>Person '<%= capitalize(r.name.trim()) %>' deleted'.</p>
-            <% }); %>
-            <form action="/" class="">
-                <input type="submit" value="Return home"/>
-            </form>
-        </div>
+        <h1>Success!</h1>
+        <% results.forEach(function(r) { %>
+            <p>Person '<%= capitalize(r.name.trim()) %>' deleted'.</p>
+        <% }); %>
+        <form action="/" class="">
+            <input type="submit" value="Return home"/>
+        </form>
     </div>
 </body>
 </html>

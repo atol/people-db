@@ -87,10 +87,14 @@ express()
         var size = req.body.size;
         var height = req.body.height;
         var type = req.body.type;
+        var age = req.body.age;
+        var income = req.body.income;
+        var fame = req.body.fame;
 
         try {
             const client = await pool.connect();
-            await client.query('INSERT INTO person VALUES ($1, $2, $3, $4, $5)', [id, name, size, height, type]);
+            await client.query('INSERT INTO person VALUES ($1, $2, $3, $4, $5, $6, $7, $8)', 
+                [id, name, size, height, type, age, income, fame]);
             res.redirect('person/' + id);
             client.release();
         } catch (err) {
@@ -105,10 +109,14 @@ express()
         var size = req.body.size;
         var height = req.body.height;
         var type = req.body.type;
+        var age = req.body.age;
+        var income = req.body.income;
+        var fame = req.body.fame;
 
         try {
             const client = await pool.connect();
-            await client.query('UPDATE person SET name=$2, size=$3, height=$4, type=$5 WHERE id=$1', [id, name, size, height, type]);
+            await client.query('UPDATE person SET name=$2, size=$3, height=$4, type=$5, age=$6, income=$7, fame=$8 WHERE id=$1', 
+                [id, name, size, height, type, age, income, fame]);
             res.redirect('/person/' + id);
             client.release();
         } catch (err) {

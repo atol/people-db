@@ -11,19 +11,20 @@
         return string[0].toUpperCase() + string.substring(1)
     } %>
     <div class="container">
-        <div class ="display">
-            <h1>Person</h1>
-            <ul>
-                <% results.forEach(function(r) { %>
-                    <li><p><strong>Name:</strong> <%= capitalize(r.name.trim()) %></p></li>
-                    <li><p><strong>Size:</strong> <%= r.size %></p></li>
-                    <li><p><strong>Height:</strong> <%= r.height %></p></li>
-                    <li><p><strong>Type:</strong> <%= capitalize(r.type.trim()) %></p></li>
-                    <button id="edit" onclick="location.href='/person/<%= r.id %>/edit'">Edit</button>
-                    <button id="delete" onclick="location.href='/person/<%= r.id %>/delete'">Delete</button>
-                <% }); %>
-            </ul>
-        </div>
+        <h1>Person</h1>
+        <ul>
+            <% results.forEach(function(r) { %>
+                <li><span>Name:</span> <%= r.name == null ? 'n/a' : capitalize(r.name.trim()) %></li>
+                <li><span>Size:</span> <%= r.size == null ? 'n/a' : r.size %></li>
+                <li><span>Height:</span> <%= r.height == null ? 'n/a' : r.height %></li>
+                <li><span>Type:</span> <%= r.type == null? 'n/a' : capitalize(r.type.trim()) %></li>
+                <li><span>Age:</span> <%= r.age == null ? 'n/a' : r.age %></li>
+                <li><span>Income:</span> <%= r.income == null ? 'n/a' : r.income %></li>
+                <li><span>Fame:</span> <%= r.fame == null ? 'n/a' : r.fame %></li>
+                <button id="edit" onclick="location.href='/person/<%= r.id %>/edit'">Edit</button>
+                <button id="delete" onclick="location.href='/person/<%= r.id %>/delete'">Delete</button>
+            <% }); %>
+        </ul>
     </div>
 </body>
 </html>

@@ -7,28 +7,42 @@
 <body>
     <%- include ("../partials/nav") %>
     <div class="container">
-        <div class ="display">
-            <h1>Add New Person</h1>
-            <form action="/added" method="post">
-                <label for="name">Name</label><br>
-                <input type="text" name="name" value=""><br>
+        <h1>Add New Person</h1>
+        <form action="/added" method="post">
+            <label for="name">Name</label><br>
+            <input type="text" name="name" value=""><br>
 
-                <label for="size">Size</label><br>
-                <input type="text" name="size" value=""><br>
+            <label for="size">Size</label><br>
+            <input type="text" name="size" value=""><br>
 
-                <label for="height">Height</label><br>
-                <input type="text" name="height" value=""><br>
-                
-                <label for="type">Type</label><br>
-                <select name="type">
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
-                </select><br>
+            <label for="height">Height</label><br>
+            <input type="text" name="height" value=""><br>
+            
+            <label for="type">Type</label><br>
+            <select name="type">
+                <option value="" selected disabled hidden>Please select one:</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select><br>
 
-                <input type="submit" value="Submit">
-                <button id="return" onclick="history.back()">Cancel</button>
-            </form>
-        </div>
+            <label for="age">Age</label><br>
+            <input type="text" name="age" value=""><br>
+
+            <label for="income">Income</label><br>
+            <input type="text" name="income" value=""><br>
+
+            <label for="fame">Fame</label><br>
+            <select name="fame">
+                <option value="" selected disabled hidden>Please select one:</option>
+                <option value="★">★</option>
+                <option value="★★">★★</option>
+                <option value="★★★">★★★</option>
+                <option value="★★★★">★★★★</option>
+            </select><br>
+
+            <input type="submit" value="Submit">
+            <button id="return" onclick="history.back()">Cancel</button>
+        </form>
     </div>
 </body>
 </html>

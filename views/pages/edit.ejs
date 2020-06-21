@@ -11,35 +11,74 @@
         return string[0].toUpperCase() + string.substring(1)
     } %>
     <div class="container">
-        <div class ="display">
-            <h1>Edit Person</h1>
-            <% results.forEach(function(r) { %>
-                <form action="/edited/<%= r.id %>" method="post">
-                    <label for="name">Name</label><br>
-                    <input type="text" name="name" value="<%= capitalize(r.name.trim()) %>"><br>
+        <h1>Edit Person</h1>
+        <% results.forEach(function(r) { %>
+            <form action="/edited/<%= r.id %>" method="post">
+                <label for="name">Name</label><br>
+                <input type="text" name="name" value="<%= capitalize(r.name.trim()) %>"><br>
 
-                    <label for="size">Size</label><br>
-                    <input type="text" name="size" value="<%= r.size %>"><br>
+                <label for="size">Size</label><br>
+                <input type="text" name="size" value="<%= r.size %>"><br>
 
-                    <label for="height">Height</label><br>
-                    <input type="text" name="height" value="<%= r.height %>"><br>
-                    
-                    <label for="type">Type</label><br>
-                    <select name="type">
-                        <% if(r.type.trim() == 'male') { %>
-                            <option value="male" selected>Male</option>
-                            <option value="female">Female</option>
-                        <% } else { %>
-                            <option value="male">Male</option>
-                            <option value="female" selected>Female</option>
-                        <% } %>
-                    </select><br>
+                <label for="height">Height</label><br>
+                <input type="text" name="height" value="<%= r.height %>"><br>
+                
+                <label for="type">Type</label><br>
+                <select name="type">
+                    <% if(r.type == null) { %>
+                        <option value="" selected disabled hidden>Please select one:</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    <% } else if(r.type.trim() == 'male') { %>
+                        <option value="male" selected>Male</option>
+                        <option value="female">Female</option>
+                    <% } else { %>
+                        <option value="male">Male</option>
+                        <option value="female" selected>Female</option>
+                    <% } %>
+                </select><br>
 
-                    <input type="submit" value="Submit">
-                    <button id="return" onclick="history.back()">Cancel</button>
-                </form>
-            <% }); %>
-        </div>
+                <label for="age">Age</label><br>
+                <input type="text" name="age" value="<%= r.age %>"><br>
+
+                <label for="income">Income</label><br>
+                <input type="text" name="income" value="<%= r.income %>"><br>
+
+                <label for="fame">Fame</label><br>
+                <select name="fame">
+                    <% if(r.fame == null) { %>
+                        <option value="" selected disabled hidden>Please select one:</option>
+                        <option value="★">★</option>
+                        <option value="★★">★★</option>
+                        <option value="★★★">★★★</option>
+                        <option value="★★★★">★★★★</option>
+                    <% } else if(r.fame.trim() == '★') { %>
+                        <option value="★" selected>★</option>
+                        <option value="★★">★★</option>
+                        <option value="★★★">★★★</option>
+                        <option value="★★★★">★★★★</option>
+                    <% } else if(r.fame.trim() == '★★') { %>
+                        <option value="★">★</option>
+                        <option value="★★" selected>★★</option>
+                        <option value="★★★">★★★</option>
+                        <option value="★★★★">★★★★</option>
+                    <% } else if(r.fame.trim() == '★★★') { %>
+                        <option value="★">★</option>
+                        <option value="★★">★★</option>
+                        <option value="★★★" selected>★★★</option>
+                        <option value="★★★★">★★★★</option>
+                    <% } else { %>
+                        <option value="★">★</option>
+                        <option value="★★">★★</option>
+                        <option value="★★★">★★★</option>
+                        <option value="★★★★" selected>★★★★</option>
+                    <% } %>
+                </select><br>
+
+                <input type="submit" value="Submit">
+                <button id="return" onclick="history.back()">Cancel</button>
+            </form>
+        <% }); %>
     </div>
 </body>
 </html>
