@@ -12,29 +12,47 @@
     } %>
     <div class="container">
         <h1>People</h1>
-        <ul>
-            <% results.forEach(function(r) { %>
+        <% results.forEach(function(r) { %>
+            <ul>
                 <% if (r.type == null) { %>
-                    <svg width="<%= r.size + 10 %>" height="<%= r.height + 10 %>">
-                        <rect x="5" y="5" width="<%= r.size %>" height="<%= r.height %>"
-                        style="fill:#ccc;stroke:#999;stroke-width:5" />
-                    </svg>
+                    <li><svg width="<%= r.size + 34 %>" height="<%= r.height + 4 %>">
+                        <rect x="2" y="2" rx="15" width="<%= r.size + 30 %>" height="<%= r.height %>"
+                        style="fill:#ccc;stroke:#999;stroke-width:3" />
+                        <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle">
+                            <a href="/person/<%= r.id %>"><%= r.name.trim() == "" ? 'Anonymous' : capitalize(r.name.trim()) %></a>
+                        </text>
+                    </svg></li>
                 <% } else if (r.type.trim() == 'male') { %>
-                    <svg width="<%= r.size + 10 %>" height="<%= r.height + 10 %>">
-                        <rect x="5" y="5" width="<%= r.size %>" height="<%= r.height %>"
-                        style="fill:blue;stroke:#999;stroke-width:5" />
-                    </svg>
+                    <li><svg width="<%= r.size + 34 %>" height="<%= r.height + 4 %>">
+                        <rect x="2" y="2" rx="15" width="<%= r.size + 30 %>" height="<%= r.height %>"
+                        style="fill:blue;stroke:#999;stroke-width:3" />
+                        <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle">
+                            <a href="/person/<%= r.id %>"><%= r.name.trim() == "" ? 'Anonymous' : capitalize(r.name.trim()) %></a>
+                        </text>
+                    </svg></li>
                 <% } else { %>
-                    <svg width="<%= r.size + 10 %>" height="<%= r.height + 10 %>">
-                        <rect x="5" y="5" width="<%= r.size %>" height="<%= r.height %>"
-                        style="fill:pink;stroke:#999;stroke-width:5" />
-                    </svg>
+                    <li><svg width="<%= r.size + 34 %>" height="<%= r.height + 4 %>">
+                        <rect x="2" y="2" rx="15" width="<%= r.size + 30 %>" height="<%= r.height %>"
+                        style="fill:pink;stroke:#999;stroke-width:3" />
+                        <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle">
+                            <a href="/person/<%= r.id %>"><%= r.name.trim() == "" ? 'Anonymous' : capitalize(r.name.trim()) %></a>
+                        </text>
+                    </svg></li>
                 <% } %>
+                <li><%= r.fame %></li>
                 <li>
-                    <a href="/person/<%= r.id %>"><%= r.name.trim() == "" ? 'Anonymous' : capitalize(r.name.trim()) %></a>
+                    <% if(r.income < '$50,000.00') { %>
+                        $
+                    <% } else if(r.income >= '$50,000.00' && r.income < '$100,000.00') { %>
+                        $$
+                    <% } else if(r.income >= '$100,000.00' && r.income < '$250,000.00') { %>
+                        $$$
+                    <% } else { %>
+                        $$$$
+                    <% } %>
                 </li>
-            <% }); %>
-        </ul>
+            </ul>
+        <% }); %>
     </div>
 </body>
 </html>
