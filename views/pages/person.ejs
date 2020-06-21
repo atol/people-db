@@ -14,7 +14,7 @@
         <h1>Person</h1>
         <ul>
             <% results.forEach(function(r) { %>
-                <li><span>Name:</span> <%= r.name == null ? 'n/a' : capitalize(r.name.trim()) %></li>
+                <li><span>Name:</span> <%= r.name.trim() == "" ? 'Anonymous' : capitalize(r.name.trim()) %></li>
                 <li><span>Size:</span> <%= r.size == null ? 'n/a' : r.size %></li>
                 <li><span>Height:</span> <%= r.height == null ? 'n/a' : r.height %></li>
                 <li><span>Type:</span> <%= r.type == null? 'n/a' : capitalize(r.type.trim()) %></li>

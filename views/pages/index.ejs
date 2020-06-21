@@ -31,7 +31,7 @@
                     </svg>
                 <% } %>
                 <li>
-                    <a href="/person/<%= r.id %>"><%= capitalize(r.name.trim()) %></a>
+                    <a href="/person/<%= r.id %>"><%= r.name.trim() == "" ? 'Anonymous' : capitalize(r.name.trim()) %></a>
                 </li>
             <% }); %>
         </ul>

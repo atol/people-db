@@ -13,7 +13,7 @@
     <div class="container">
         <h1>Success!</h1>
         <% results.forEach(function(r) { %>
-            <p>Person '<%= capitalize(r.name.trim()) %>' deleted'.</p>
+            <p>Person '<%= r.name.trim() == "" ? 'Anonymous' : capitalize(r.name.trim()) %>' deleted.</p>
         <% }); %>
         <form action="/" class="">
             <input type="submit" value="Return home"/>

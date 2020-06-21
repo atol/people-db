@@ -15,7 +15,7 @@
         <% results.forEach(function(r) { %>
             <form action="/edited/<%= r.id %>" method="post">
                 <label for="name">Name</label><br>
-                <input type="text" name="name" value="<%= capitalize(r.name.trim()) %>"><br>
+                <input type="text" name="name" value="<%= r.name.trim() == "" ? "" : capitalize(r.name.trim()) %>"><br>
 
                 <label for="size">Size</label><br>
                 <input type="text" name="size" value="<%= r.size %>"><br>
