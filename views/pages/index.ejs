@@ -10,42 +10,45 @@
         // https://stackoverflow.com/questions/1026069/how-do-i-make-the-first-letter-of-a-string-uppercase-in-javascript
         return string[0].toUpperCase() + string.substring(1)
     } %>
-    <div class="container">
+    <div class="display">
         <h1>People</h1>
+        <% // https://stackoverflow.com/questions/41768657/display-text-over-svg-element-on-hover %>
         <% results.forEach(function(r) { %>
             <ul>
                 <% if (r.type == null) { %>
-                    <li><svg width="<%= r.size + 34 %>" height="<%= r.height + 4 %>">
+                    <li><a href="/person/<%= r.id %>"><svg width="<%= r.size + 34 %>" height="<%= r.height + 4 %>">
                         <rect x="2" y="2" rx="15" width="<%= r.size + 30 %>" height="<%= r.height %>"
-                        style="fill:#ccc;stroke:#999;stroke-width:3" />
+                        style="fill:#a5a5a5;stroke:#7f7f7f;stroke-width:3" />
                         <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle">
-                            <a href="/person/<%= r.id %>"><%= r.name.trim() == "" ? 'Anonymous' : capitalize(r.name.trim()) %></a>
+                            <%= r.name.trim() == "" ? 'Anonymous' : capitalize(r.name.trim()) %>
                         </text>
-                    </svg></li>
+                    </svg></a></li>
                 <% } else if (r.type.trim() == 'male') { %>
-                    <li><svg width="<%= r.size + 34 %>" height="<%= r.height + 4 %>">
+                    <li><a href="/person/<%= r.id %>"><svg width="<%= r.size + 34 %>" height="<%= r.height + 4 %>">
                         <rect x="2" y="2" rx="15" width="<%= r.size + 30 %>" height="<%= r.height %>"
-                        style="fill:blue;stroke:#999;stroke-width:3" />
+                        style="fill:#79aff8;stroke:#418df5;stroke-width:3" />
                         <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle">
-                            <a href="/person/<%= r.id %>"><%= r.name.trim() == "" ? 'Anonymous' : capitalize(r.name.trim()) %></a>
+                            <%= r.name.trim() == "" ? 'Anonymous' : capitalize(r.name.trim()) %>
                         </text>
-                    </svg></li>
+                    </svg></a></li>
                 <% } else { %>
-                    <li><svg width="<%= r.size + 34 %>" height="<%= r.height + 4 %>">
+                    <li><a href="/person/<%= r.id %>"><svg width="<%= r.size + 34 %>" height="<%= r.height + 4 %>">
                         <rect x="2" y="2" rx="15" width="<%= r.size + 30 %>" height="<%= r.height %>"
-                        style="fill:pink;stroke:#999;stroke-width:3" />
+                        style="fill:#f88379;stroke:#f54f41;stroke-width:3" />
                         <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle">
-                            <a href="/person/<%= r.id %>"><%= r.name.trim() == "" ? 'Anonymous' : capitalize(r.name.trim()) %></a>
+                            <%= r.name.trim() == "" ? 'Anonymous' : capitalize(r.name.trim()) %>
                         </text>
-                    </svg></li>
+                    </svg></a></li>
                 <% } %>
-                <li><%= r.fame %></li>
-                <li>
-                    <% if(r.income < '$50,000.00') { %>
+                <li class="fame"><%= r.fame %></li>
+                <li class="income">
+                    <% // https://stackoverflow.com/questions/559112/how-to-convert-a-currency-string-to-a-double-with-jquery-or-javascript %>
+                    <% var income = Number(r.income.replace(/[^0-9.-]+/g,"")); %>
+                    <% if(income < 50000) { %>
                         $
-                    <% } else if(r.income >= '$50,000.00' && r.income < '$100,000.00') { %>
+                    <% } else if(income >= 50000 && income < 100000) { %>
                         $$
-                    <% } else if(r.income >= '$100,000.00' && r.income < '$250,000.00') { %>
+                    <% } else if(income >= 100000 && income < 250000) { %>
                         $$$
                     <% } else { %>
                         $$$$

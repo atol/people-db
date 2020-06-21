@@ -15,11 +15,11 @@
         <ul>
             <% results.forEach(function(r) { %>
                 <li><span>Name:</span> <%= r.name.trim() == "" ? 'Anonymous' : capitalize(r.name.trim()) %></li>
-                <li><span>Size:</span> <%= r.size == null ? 'n/a' : r.size %></li>
-                <li><span>Height:</span> <%= r.height == null ? 'n/a' : r.height %></li>
+                <li><span>Size:</span> <%= r.size %></li>
+                <li><span>Height:</span> <%= r.height %></li>
                 <li><span>Type:</span> <%= r.type == null? 'n/a' : capitalize(r.type.trim()) %></li>
-                <li><span>Age:</span> <%= r.age == null ? 'n/a' : r.age %></li>
-                <li><span>Income:</span> <%= r.income == null ? 'n/a' : r.income %></li>
+                <li><span>Age:</span> <%= r.age %></li>
+                <li><span>Income:</span> <%= r.income %></li>
                 <li><span>Fame:</span> <%= r.fame == null ? 'n/a' : r.fame %></li>
                 <button id="edit" onclick="location.href='/person/<%= r.id %>/edit'">Edit</button>
                 <button id="delete" onclick="location.href='/person/<%= r.id %>/delete'">Delete</button>

@@ -21,7 +21,7 @@ body {
 .navbar li {
     float: left;
     margin: 0;
-    font-size: 85%;
+    font-size: 75%;
     font-weight: bold;
     text-transform: uppercase;
 }
@@ -38,28 +38,66 @@ body {
     background-color: #5900ab;
 }
 
-.container {
+.container, .display {
     display: inline-block;
     width: 70%;
     text-align: justify;
     font-size: 100%;
 }
 
-span {
+.container ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.container li {
+    margin-bottom: 15px;
+}
+
+.container span {
     display: inline-block;
     width: 80px;
     font-weight: bold;
 }
 
-ul {
+.display ul {
     list-style-type: none;
     margin-bottom: 40px;
     padding: 0;
 }
 
-li {
-    margin-bottom: 5px;
+.display li {
+    margin: 0;
 }
+
+.display li.fame {
+    color: #ffbf00;
+    font-weight: bold;
+    font-size: 150%;
+}
+
+.display li.income {
+    color: #007800;
+    font-weight: bold;
+    font-size: 150%;
+}
+
+svg {
+    fill: #fff;
+    font-weight: bold;
+    font-size: 90%;
+}
+
+svg:hover {
+    fill: #999;
+}
+
+svg rect:hover {
+    fill: #fff995 !important;
+    stroke: #fcee00 !important;
+}
+
 
 input[type="text"], select {
     width: 40%;
